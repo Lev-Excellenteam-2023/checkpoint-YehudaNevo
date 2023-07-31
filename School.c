@@ -28,7 +28,7 @@ void print_school(School* school) {
                     printf("%d ", current_student->scores[i]);
                 }
                 printf("\n");
-                current_student = current_student->next;  // Move to the next student
+                current_student = current_student->next;
             }
         }
     }

@@ -21,7 +21,7 @@ void add_student(Class* class, char* first_name, char* last_name, char* phone, i
     strcpy(new_student->phone, phone);
     memcpy(new_student->scores, scores, sizeof(int) * 10);
 
-    new_student->next = class->head; // insert the new student at the beginning of the list
+    new_student->next = class->head;
     class->head = new_student;
     class->count++;
 }
@@ -36,6 +36,7 @@ void cleanup_class(Class* class) {
     }
     class->head = NULL;
     class->count = 0;
+    free(class);
 }
 
 
