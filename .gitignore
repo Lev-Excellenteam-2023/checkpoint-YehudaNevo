@@ -1,0 +1,27 @@
+# Compiled object files
+*.o
+
+# Executables
+*.exe
+*.out
+
+# Compiled Dynamic Libraries
+*.so
+
+# Compiled Static Libraries
+*.a
+
+# CLion project files
+.idea/
+
+# macOS folder attributes
+.DS_Store
+
+# User-specific files
+*.user
+
+# CMake build directory
+cmake-build*/
+
+# Build output directory
+build/
