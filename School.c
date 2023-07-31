@@ -1,7 +1,5 @@
 #include "School.h"
 #include <stdio.h>
-#include <stdlib.h>
-
 #include "School.h"
 
 School create_school() {
@@ -22,13 +20,15 @@ void print_school(School* school) {
         Group* group = school->groups[g];
         for(int c = 0; c < 10; c++) {
             Class* class = group->classes[c];
-            for(int s = 0; s < class->count; s++) {
+            Student* current_student = class->head;
+            while(current_student != NULL) {
                 printf("Group: %d, Class: %d, Student First Name: %s, Student Last Name: %s, Scores: ",
-                       g+1, c+1, class->students[s].first_name, class->students[s].last_name);
+                       g+1, c+1, current_student->first_name, current_student->last_name);
                 for(int i = 0; i < 10; i++) {
-                    printf("%d ", class->students[s].scores[i]);
+                    printf("%d ", current_student->scores[i]);
                 }
                 printf("\n");
+                current_student = current_student->next;  // Move to the next student
             }
         }
     }

@@ -3,12 +3,9 @@
 
 #include "Student.h"
 
-// the number of claases is fixed
-
 typedef struct {
-    Student* students;
+    Student* head;
     int count;
-    int size;
 } Class;
 
 Class* create_class();

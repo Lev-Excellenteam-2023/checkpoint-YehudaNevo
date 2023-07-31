@@ -5,7 +5,7 @@ void load_student(School* school, char* line) {
     char first_name[50], last_name[50], phone[11];
     int group, class, scores[10];
 
-    sscanf(line, "%s %s %s %d %d %d %d %d %d %d %d %d %d %d %d %d",
+    sscanf(line, "%s %s %s %d %d %d %d %d %d %d %d %d %d %d %d",
            first_name, last_name, phone, &group, &class,
            &scores[0], &scores[1], &scores[2], &scores[3], &scores[4],
            &scores[5], &scores[6], &scores[7], &scores[8], &scores[9]);
@@ -15,6 +15,7 @@ void load_student(School* school, char* line) {
 
 
 int main() {
+
     School school = create_school();
 
     FILE* file = fopen("/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/students_with_class.txt", "r");
