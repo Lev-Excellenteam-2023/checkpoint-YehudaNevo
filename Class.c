@@ -36,7 +36,7 @@ void cleanup_class(Class* class) {
     }
     class->head = NULL;
     class->count = 0;
-    free(class);
+    free(class); // todo - maybe its more correct to  free it in group
 }
 
 

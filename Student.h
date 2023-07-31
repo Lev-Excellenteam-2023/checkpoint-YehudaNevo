@@ -8,7 +8,7 @@ typedef struct Student {
     char last_name[50];
     char phone[11];
     int scores[10];
-    struct Student *next;  // add a pointer to the next student in the list
+    struct Student *next;
 } Student;
 
 

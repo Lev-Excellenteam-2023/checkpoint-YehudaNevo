@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include "School.h"
 
+#define MAX_NAME_LENGTH 50
+#define MAX_PHONE_LENGTH 11
+#define SCORE_COUNT 10
+#define MAX_LINE_LENGTH 256
+#define STUDENTS_FILE "/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/students_with_class.txt"
+
 void load_student(School* school, char* line) {
-    char first_name[50], last_name[50], phone[11];
-    int group, class, scores[10];
+    char first_name[MAX_NAME_LENGTH], last_name[MAX_NAME_LENGTH], phone[MAX_PHONE_LENGTH];
+    int group, class, scores[SCORE_COUNT];
 
     sscanf(line, "%s %s %s %d %d %d %d %d %d %d %d %d %d %d %d",
            first_name, last_name, phone, &group, &class,
@@ -13,16 +19,14 @@ void load_student(School* school, char* line) {
     add_student(school->groups[group-1]->classes[class-1], first_name, last_name, phone, scores);
 }
 
-
 int main() {
 
     School school = create_school();
-
-    FILE* file = fopen("/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/students_with_class.txt", "r");
-    char line[256];
+    FILE* file = fopen(STUDENTS_FILE, "r");
+    char line[MAX_LINE_LENGTH];
 
     if (file) {
-        printf("DEBUG: open the file ");
+        printf("DEBUG: open the file \n");
         while (fgets(line, sizeof(line), file)) {
             load_student(&school, line);
         }
