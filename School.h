@@ -10,6 +10,8 @@ typedef struct {
 School create_school();
 void cleanup_school(School* school);
 void print_school(School* school);
+void delete_student(School* school, const char* firstName, const char* lastName);
+
 
 
 
