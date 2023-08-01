@@ -201,31 +201,32 @@ void printTopNStudentsPerCourse(School *school) {
         Class *class = selected_group->classes[c];
         Student *current_student = class->head;
         while (current_student != NULL) {
-            for (int i = 0; i < 10; i++) {
-                if (current_student->scores[course] > min_score[i]) {
-                    for (int j = 9; j > i; j--) {
-                        top_students[j] = top_students[j - 1];
-                        min_score[j] = min_score[j - 1];
-                    }
-                    top_students[i] = current_student;
-                    min_score[i] = current_student->scores[course];
-                    break;
+            int score = current_student->scores[course];
+            int min_index = 0;
+            for (int i = 1; i < 10; i++) {
+                if (min_score[i] < min_score[min_index]) {
+                    min_index = i;
                 }
+            }
+            if (score > min_score[min_index]) {
+                top_students[min_index] = current_student;
+                min_score[min_index] = score;
             }
             current_student = current_student->next;
         }
     }
 
-
-    printf("Group %d, Course %d, best 10 students:\n", group, course);
-    for (int i = 0; i < 10 && top_students[i] != NULL; i++) {
-        printf("%d. First Name: %s, Last Name: %s, Score: %d\n",
-               i + 1,
-               top_students[i]->first_name,
-               top_students[i]->last_name,
-               top_students[i]->scores[course]);
+    // Print the top 10 students
+    for (int i = 0; i < 10; i++) {
+        if (top_students[i] != NULL) {
+            printf("First Name: %s, Last Name: %s, Score: %d\n",
+                   top_students[i]->first_name, top_students[i]->last_name, min_score[i]);
+        }
     }
 }
+
+
+
 
 void printUnderperformedStudents(School *school) {
     printf("Underperformed Students (Average less than 65):\n");
