@@ -227,7 +227,6 @@ void printTopNStudentsPerCourse(School *school) {
     }
 }
 
-
 void printUnderperformedStudents(School *school) {
     printf("Underperformed Students (Average less than 65):\n");
 
@@ -253,7 +252,6 @@ void printUnderperformedStudents(School *school) {
         }
     }
 }
-
 
 void printAverage(School *school) {
     int groupNumber, courseNumber;
@@ -294,7 +292,8 @@ void printAverage(School *school) {
 void exportDatabase(School *school) {
     char filename[256];
     int fileNumber = 1;
-    snprintf(filename, sizeof(filename), "/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/DB/school_database_%d.txt", fileNumber++);
+    snprintf(filename, sizeof(filename),
+             "/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/DB/school_database_%d.txt", fileNumber++);
     FILE *file = fopen(filename, "w");
     if (file == NULL) {
         perror("Error creating file");
@@ -327,6 +326,5 @@ void exportDatabase(School *school) {
 void handleClosing(School *school) {
     cleanup_school(school);
 }
-
 
 #endif //CHECKPOINT_YEHUDANEVO_MAIN_UTIL_C
