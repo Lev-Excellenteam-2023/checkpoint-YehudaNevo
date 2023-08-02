@@ -172,9 +172,11 @@ void searchStudent(School *school) {
     printf("\n");
 }
 
+
 void printAllStudents(School *school) {
     print_school(school);
 }
+
 
 void printTopNStudentsPerCourse(School *school) {
     int group, course;
@@ -194,7 +196,7 @@ void printTopNStudentsPerCourse(School *school) {
     }
 
     Student *top_students[10] = {NULL};
-    int min_score[10] = {0};
+    int scores[10] = {0};
 
     Group *selected_group = school->groups[group - 1];
     for (int c = 0; c < 10; c++) {
@@ -204,13 +206,13 @@ void printTopNStudentsPerCourse(School *school) {
             int score = current_student->scores[course];
             int min_index = 0;
             for (int i = 1; i < 10; i++) {
-                if (min_score[i] < min_score[min_index]) {
+                if (scores[i] < scores[min_index]) {
                     min_index = i;
                 }
             }
-            if (score > min_score[min_index]) {
+            if (score > scores[min_index]) {
                 top_students[min_index] = current_student;
-                min_score[min_index] = score;
+                scores[min_index] = score;
             }
             current_student = current_student->next;
         }
@@ -220,12 +222,10 @@ void printTopNStudentsPerCourse(School *school) {
     for (int i = 0; i < 10; i++) {
         if (top_students[i] != NULL) {
             printf("First Name: %s, Last Name: %s, Score: %d\n",
-                   top_students[i]->first_name, top_students[i]->last_name, min_score[i]);
+                   top_students[i]->first_name, top_students[i]->last_name, scores[i]);
         }
     }
 }
-
-
 
 
 void printUnderperformedStudents(School *school) {
@@ -253,6 +253,7 @@ void printUnderperformedStudents(School *school) {
         }
     }
 }
+
 
 void printAverage(School *school) {
     int groupNumber, courseNumber;
@@ -292,7 +293,7 @@ void printAverage(School *school) {
 
 void exportDatabase(School *school) {
     char filename[256];
-    int fileNumber = 1;
+    static int fileNumber = 1;
     snprintf(filename, sizeof(filename),
              "/Users/yehudanevo/CLionProjects/checkpoint-YehudaNevo/DB/school_database_%d.txt", fileNumber++);
     FILE *file = fopen(filename, "w");

@@ -18,6 +18,8 @@ enum menu_inputs {
     Exit = '9'
 };
 
+//TODO - scanf strncpy  is not secure for using !
+
 void menu(School *school) {
     char input[3];
     char option;
